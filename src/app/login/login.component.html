@@ -1,0 +1,45 @@
+<mat-progress-bar mode="indeterminate" *ngIf="showLoadingBar"></mat-progress-bar>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="60">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h1>
+        Template
+      </h1>
+
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <img src="assets/angular_solidBlack.png" alt="" width="150px" height="150px">
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="save()">
+
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field>
+            <input required minlength="4" maxlength="50" matInput placeholder="Usuario" formControlName="usernameField" [(ngModel)]="user.Username">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field>
+          <input required minlength="4" maxlength="10" matInput type="password" placeholder="Contraseña" formControlName="passwordField" [(ngModel)]="user.Password">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <button [disabled]="!loginForm.valid" mat-button type="submit" mat-raised-button color="primary">
+          <!-- <mat-icon>send</mat-icon> -->
+          Iniciar sesión
+        </button>
+
+      </div>
+
+    </form>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <a href="#" [routerLink]="['/forgot-password']"> ¿Olvidó su contraseña?</a>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <a href="#" [routerLink]="['/register']"> ¿No tienes una cuenta?, ¡Regístrate!</a>
+
+    </div>
+  </mat-card>
+
+</div>
