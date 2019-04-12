@@ -5,9 +5,12 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a *ngFor="let item of navModel" mat-list-item (click)='navigateTo(item.link)'>
+        <mat-icon>{{item.icon}}</mat-icon>
+        {{item.name}}
+      </a>
+      <a mat-list-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Cerrar sesión</a> 
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,6 +25,8 @@
       </button>
       <span>template</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <div >
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

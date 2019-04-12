@@ -20,7 +20,7 @@ export class AuthService {
 
   authenticate(user: LoginUserModel): Observable<AuthModel> {
     const apiUrl = environment.apiUrl;
-    return this.http.post<AuthModel>(apiUrl + 'api/v1/auth/authenticate', user)
+    return this.http.post<AuthModel>(`${apiUrl}api/auth/login`, user)
     .pipe(
       tap((incomingUser: AuthModel) => {
         localStorage.setItem('JWT', incomingUser.token);

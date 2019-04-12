@@ -19,6 +19,9 @@ import { ForgottenPasswordComponent } from './forgotten-password/forgotten-passw
 import { HomeDashboardComponent } from './home-dashboard/home-dashboard.component';
 import { AuthGuard } from './guard/AuthGuard';
 import { LoginGuard } from './guard/LoginGuard';
+import { AboutComponent } from './about/about.component';
+import { SettingsComponent } from './settings/settings.component';
+import { MasterComponent } from './master/master.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { LoginGuard } from './guard/LoginGuard';
     HomeComponent,
     ExternalRegisterComponent,
     ForgottenPasswordComponent,
-    HomeDashboardComponent
+    HomeDashboardComponent,
+    AboutComponent,
+    SettingsComponent,
+    MasterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
