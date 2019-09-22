@@ -9,6 +9,14 @@ import { HomeDashboardComponent } from '../home-dashboard/home-dashboard.compone
 import { AboutComponent } from '../about/about.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { MasterComponent } from '../master/master.component';
+import { MandamientoComponent } from '../mandamiento/mandamiento.component';
+import { MandamientoPagoComponent } from '../mandamiento-pago/mandamiento-pago.component';
+import { NotificacionCorrespondenciaComponent } from '../notificacion-correspondencia/notificacion-correspondencia.component';
+import { NotificacionEmbargoComponent } from '../notificacion-embargo/notificacion-embargo.component';
+import { NotificacionMensajeriaComponent } from '../notificacion-mensajeria/notificacion-mensajeria.component';
+import { ResolucionVigenteComponent } from '../resolucion-vigente/resolucion-vigente.component';
+import { ResolucionConvenioPagoComponent } from '../resolucion-convenio-pago/resolucion-convenio-pago.component';
+import { SolicitudAbogadoComponent } from '../solicitud-abogado/solicitud-abogado.component';
 
 
 // import { AuthGuardService as AuthGuard } from '../auth/auth-guard.service';
@@ -33,6 +41,46 @@ export const appRoutes: Routes = [
                 {
                     path: 'about',
                     component: AboutComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'mandamientos',
+                    component: MandamientoComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'mandamientos-pago',
+                    component: MandamientoPagoComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'notificacion-correspondencia',
+                    component: NotificacionCorrespondenciaComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'notificacion-embargo',
+                    component: NotificacionEmbargoComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'notificacion-mensajeria',
+                    component: NotificacionMensajeriaComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'resolucion-vigente',
+                    component: ResolucionVigenteComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'resolucion-convenio-pago',
+                    component: ResolucionConvenioPagoComponent,
+                    canActivate: [AuthGuard]
+                },
+                {
+                    path: 'solicitud-abogado',
+                    component: SolicitudAbogadoComponent,
                     canActivate: [AuthGuard]
                 },
                 {

@@ -1,3 +1,66 @@
-<p>
-  external-register works!
-</p>
+<form [formGroup]="registerUserForm">
+  <div class="grid-container">
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Registrar usuario
+        </mat-card-title>
+        <!-- <mat-card-subtitle>
+          Datos de generales para el usuario
+        </mat-card-subtitle> -->
+      </mat-card-header>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+        <mat-form-field fxFlex fxFlex.xs>
+          <input required matInput placeholder="Nombre" maxlength="20" formControlName="numero">
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlex.xs>
+          <input required matInput placeholder="Apellido" maxlength="20" formControlName="ciudad">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+        <mat-form-field fxFlex fxFlex.xs>
+          <mat-select required formControlName="expediente" placeholder="Identificación">
+            <mat-option *ngFor="let role of roles" [value]="role._id">
+              {{role.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlex.xs>
+          <input required type="number" maxlength="10" matInput placeholder="Dirección"
+            formControlName="referenciaC">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+        <mat-form-field fxFlex fxFlex.xs>
+          <input type="text" maxlength="50" matInput placeholder="Ciudad" formControlName="direccion">
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlex.xs>
+          <input required type="number" maxlength="10" matInput placeholder="Propietario"
+            formControlName="propietario">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+        <mat-form-field fxFlex fxFlex.xs>
+          <input type="text" maxlength="200" matInput placeholder="Resolución" formControlName="resolucion">
+        </mat-form-field>
+        <mat-form-field fxFlex fxFlex.xs>
+          <input type="text" maxlength="200" matInput placeholder="Valor" formControlName="valor">
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <br>
+
+    <br>
+
+    <div fxLayoutAlign="start start" fxLayoutGap="10px">
+      <button mat-button mat-raised-button color="primary" [disabled]="registerUserForm.invalid" (click)="save()">
+        Enviar
+      </button>
+      <button mat-button type="reset" >Limpiar</button>
+      <button mat-button mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
+
+    </div>
+  </div>
+
+</form>

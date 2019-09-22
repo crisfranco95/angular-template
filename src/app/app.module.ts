@@ -22,6 +22,15 @@ import { LoginGuard } from './guard/LoginGuard';
 import { AboutComponent } from './about/about.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MasterComponent } from './master/master.component';
+import { MandamientoComponent } from './mandamiento/mandamiento.component';
+import { MandamientoPagoComponent } from './mandamiento-pago/mandamiento-pago.component';
+import { NotificacionCorrespondenciaComponent } from './notificacion-correspondencia/notificacion-correspondencia.component';
+import { NotificacionEmbargoComponent } from './notificacion-embargo/notificacion-embargo.component';
+import { NotificacionMensajeriaComponent } from './notificacion-mensajeria/notificacion-mensajeria.component';
+import { SolicitudAbogadoComponent } from './solicitud-abogado/solicitud-abogado.component';
+import { ArchivoDeterminadoComponent } from './archivo-determinado/archivo-determinado.component';
+import { ResolucionVigenteComponent } from './resolucion-vigente/resolucion-vigente.component';
+import { ResolucionConvenioPagoComponent } from './resolucion-convenio-pago/resolucion-convenio-pago.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,16 @@ import { MasterComponent } from './master/master.component';
     HomeDashboardComponent,
     AboutComponent,
     SettingsComponent,
-    MasterComponent
+    MasterComponent,
+    MandamientoComponent,
+    MandamientoPagoComponent,
+    NotificacionCorrespondenciaComponent,
+    NotificacionEmbargoComponent,
+    NotificacionMensajeriaComponent,
+    SolicitudAbogadoComponent,
+    ArchivoDeterminadoComponent,
+    ResolucionVigenteComponent,
+    ResolucionConvenioPagoComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

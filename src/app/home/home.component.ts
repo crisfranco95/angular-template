@@ -30,22 +30,21 @@ export class HomeComponent implements OnInit {
     switch (user) {
       case 'Admin':
         this.navModel = [
-          new NavModel('/home/dashboard', 'Home', 'home'),
-          new NavModel('/home/user', 'Users', 'account_circle'),
-          new NavModel('/home/about', 'About', 'help'),
-          new NavModel('/home/settings', 'Settings', 'settings'),
+          new NavModel('/home/dashboard', 'Inicio', 'home'),
+          new NavModel('/home/mandamientos', 'Mandamientos', 'account_circle'),
+          new NavModel('/home/mandamientos-pago', 'Mandamientos de pago', 'account_circle'),
+          new NavModel('/home/notificacion-correspondencia', 'Notificación de correspondencia', 'account_circle'),
+          new NavModel('/home/notificacion-embargo', 'Notificación de embargo', 'account_circle'),
+          new NavModel('/home/notificacion-mensajeria', 'Notificación de mensajería', 'account_circle'),
+          new NavModel('/home/resolucion-vigente', 'Resolución vigente', 'account_circle'),
+          new NavModel('/home/resolucion-convenio-pago', 'Resolución de convenio de pago', 'account_circle'),
+          new NavModel('/home/about', 'Acerca de', 'help'),
         ];
         break;
 
-      // case 'AuthenticatedUser':
-      //   this.navModel = [
-      //     new NavModel('/home/dashboard', 'Home', 'home'),
-      //   ];
-      //   break;
-
       default:
         this.navModel = [
-          new NavModel('/home/dashboard', 'Home', 'home'),
+          new NavModel('/dashboard', 'Home', 'home'),
 
         ];
         break;
