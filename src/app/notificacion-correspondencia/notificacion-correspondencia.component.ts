@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AppService } from '../app-services.service';
+import { NotificacionCorrespondenciaModel } from '../model/NotificacionCorrespondenciaModel';
 
 export interface PeriodicElement {
   name: string;
@@ -27,26 +29,63 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./notificacion-correspondencia.component.css']
 })
 export class NotificacionCorrespondenciaComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['ciudad', 'nombre', 'referencia', 'propietario'];
+  dataSource: NotificacionCorrespondenciaModel | null;
 
-  constructor() { }
+  public  pageIndex = 0;
+  public  pageSize  = 5;
+  public length: number;
 
+  constructor(
+    private appService: AppService
+  ) { }
 
   registerUserForm = new FormGroup({
-    numero: new FormControl(''),
-    ciudad: new FormControl(''),
-    expediente: new FormControl(''),
-    referenciaC: new FormControl(''),
-    direccion: new FormControl(''),
-    notificacion: new FormControl(''),
-    propietario: new FormControl(''),
-    resolucion: new FormControl(''),
-    valor: new FormControl(''),
-
+    Ciudad: new FormControl(''),
+    Nombre: new FormControl(''),
+    Referencia_Catas: new FormControl(''),
+    Direccion: new FormControl(''),
+    Propietario: new FormControl('')
+  
   });
 
   ngOnInit() {
+    this.list({pageIndex: this.pageIndex, pageSize: this.pageSize});
   }
+
+  list(event) {
+    const {pageIndex = 0, pageSize = 5} = event;
+
+    this.appService.getNotificacionCorrespondencia(pageIndex + 1, pageSize ).subscribe(res => {
+      const notificacionCorrespondencia = res.message.docs;
+      this.dataSource = notificacionCorrespondencia;
+      this.length = res.message.total;
+
+    }, err => {
+
+      console.log(err);
+
+      });
+  }
+
+  save() {
+
+    let notificacionCorrespondenciaModel: NotificacionCorrespondenciaModel  = {
+      Ciudad: this.registerUserForm.value.Ciudad,
+      Nombre: this.registerUserForm.value.Nombre,
+      Referencia_Catas: this.registerUserForm.value.Referencia_Catas,
+      Direccion: this.registerUserForm.value.Direccion,
+      Propietario: this.registerUserForm.value.Propietario,
+    };
+
+    this.appService.guardarNotificacionCorrespondencia(notificacionCorrespondenciaModel).subscribe(
+        response => {
+          alert('El usuario ha sido creado exitosamente');
+        },
+        error => {
+          alert(error.message.message);
+
+        }); 
+ }
 
 }

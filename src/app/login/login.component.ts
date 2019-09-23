@@ -32,20 +32,12 @@ export class LoginComponent implements OnInit {
   
 
   save(): void {
-    this.showLoadingBar = true;
-    // this.authService.authenticate(this.user).subscribe(res => {
-
-    //   this.showLoadingBar = false;
-
+    this.authService.authenticate(this.user).subscribe(res => {
       this.router.navigate(['home/dashboard']);
+      }, err => {
+        alert('El usuario no se ha logueado correctamente');
 
-
-      // }, err => {
-      //   this.showLoadingBar = false;
-
-      //   alert('El usuario no se ha logueado correctamente');
-
-      // });
+      });
   }
 
 }

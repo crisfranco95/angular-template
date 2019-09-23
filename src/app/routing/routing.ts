@@ -17,6 +17,7 @@ import { NotificacionMensajeriaComponent } from '../notificacion-mensajeria/noti
 import { ResolucionVigenteComponent } from '../resolucion-vigente/resolucion-vigente.component';
 import { ResolucionConvenioPagoComponent } from '../resolucion-convenio-pago/resolucion-convenio-pago.component';
 import { SolicitudAbogadoComponent } from '../solicitud-abogado/solicitud-abogado.component';
+import { ArchivoDeterminadoComponent } from '../archivo-determinado/archivo-determinado.component';
 
 
 // import { AuthGuardService as AuthGuard } from '../auth/auth-guard.service';
@@ -89,8 +90,8 @@ export const appRoutes: Routes = [
                     canActivate: [AuthGuard]
                 },
                 {
-                    path: 'user',
-                    component: MasterComponent,
+                    path: 'archivo-determinado',
+                    component: ArchivoDeterminadoComponent,
                     canActivate: [AuthGuard]
                 },
 

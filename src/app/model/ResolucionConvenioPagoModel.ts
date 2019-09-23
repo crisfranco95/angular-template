@@ -1,14 +1,12 @@
 export class ResolucionConvenioPagoModel {
-    
-    numero: number;
-    ciudad: string;
-    expediente: string;
-    referenciaC: string;
-    direccion: string;
-    notificacion: string;
-    propietario: string;
-    resolucion: string;
-    valor: string;
+
+    Resolucion_No: string;
+    No_de_Convenio: string;
+    Referencia: string;
+    Nombre: string;
+    Valor: string;
+    Fecha: string;
+    No_de_Cuotas: string;
 
 
 }

@@ -1,14 +1,14 @@
 export class MandamientoModel {
-    
-    numero: number;
-    ciudad: string;
-    expediente: string;
-    referenciaC: string;
-    direccion: string;
-    notificacion: string;
-    propietario: string;
-    resolucion: string;
-    valor: string;
+
+    Mandamiento_de_pago_No: string;
+    Ciudad: string;
+    Expediente: string;
+    ReferenciaC: string;
+    Direccion: string;
+    Propietario: string;
+    Resolucion: string;
+    Valor: string;
+    Notificacion: string;
 
 
 }

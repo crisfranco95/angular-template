@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { AppService } from '../app-services.service';
+import { MandamientoModel } from '../model/MandamientoModel';
 
 
 export interface PeriodicElement {
@@ -28,9 +31,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./mandamiento.component.css']
 })
 export class MandamientoComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-    
+  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['numero', 'expediente', 'referencia', 'ciudad'];
+  // dataSource = ELEMENT_DATA;
+  dataSource: MandamientoModel | null;
+  public  pageIndex = 0;
+  public  pageSize  = 5;
+  public length: number;
+
   registerUserForm = new FormGroup({
     numero: new FormControl(''),
     ciudad: new FormControl(''),
@@ -44,9 +52,53 @@ export class MandamientoComponent implements OnInit {
 
   });
 
-  constructor() { }
+
+
+  constructor(
+    private appService: AppService,
+
+  ) { }
 
   ngOnInit() {
+    this.list({pageIndex: this.pageIndex, pageSize: this.pageSize});
+  }
+
+  list(event) {
+    const {pageIndex = 0, pageSize = 5} = event;
+    this.appService.getMandamientos(pageIndex + 1, pageSize ).subscribe(res => {
+      const mandamientos = res.message.docs;
+      this.dataSource = mandamientos;
+      this.length = res.message.total;
+
+    }, err => {
+
+      console.log(err);
+
+      });
+  }
+
+  save() {
+
+     let mandamientoModel: MandamientoModel  = {
+       Mandamiento_de_pago_No: this.registerUserForm.value.numero,
+       Ciudad: this.registerUserForm.value.ciudad,
+       Expediente: this.registerUserForm.value.expediente,
+       ReferenciaC: this.registerUserForm.value.referenciaC,
+       Direccion: this.registerUserForm.value.direccion,
+       Notificacion: this.registerUserForm.value.notificacion,
+       Propietario: this.registerUserForm.value.propietario,
+       Resolucion: this.registerUserForm.value.resolucion,
+       Valor: this.registerUserForm.value.valor,
+     };
+
+     this.appService.guardarMandamiento(mandamientoModel).subscribe(
+         response => {
+           alert('El usuario ha sido creado exitosamente');
+         },
+         error => {
+           alert(error.message.message);
+
+         }); 
   }
 
 }

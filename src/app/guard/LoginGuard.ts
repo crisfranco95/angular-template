@@ -12,26 +12,15 @@ export class LoginGuard implements CanActivate {
   ) { }
 
   canActivate() {
-    // const token = localStorage.getItem('JWT');
-    // if (token == null) {
-    //   localStorage.removeItem('JWT');
-    //   return true;
-    // } else {
-        // this._router.navigate(['/home/dashboard']);
-
+    const token = localStorage.getItem('JWT');
+    if (token == null) {
+      localStorage.removeItem('JWT');
       return true;
-    // }
-    // return true;
-    // if (token == null) {
-    //   return true;
-    // }
-    // return true;
-    // if (token) {
-    //     this._router.navigate(['/home/dashboard']);
-    //     return false;
-    // } else {
-    //     // this._router.navigate(['/login']);
-    //     return true;
-    // }
+    } else {
+        this._router.navigate(['/home/dashboard']);
+
+      return false;
+    }
+    
   }
 }

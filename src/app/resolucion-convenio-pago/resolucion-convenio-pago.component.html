@@ -15,48 +15,44 @@
           </mat-card-header>
           <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
             <mat-form-field fxFlex fxFlex.xs>
-              <input required matInput placeholder="Número" maxlength="20" formControlName="numero">
+              <input required matInput placeholder="Número de resolución" maxlength="20" formControlName="Resolucion_No">
             </mat-form-field>
             <mat-form-field fxFlex fxFlex.xs>
-              <input required matInput placeholder="Ciudad" maxlength="20" formControlName="ciudad">
+              <input required matInput placeholder="Número de convenio" maxlength="20" formControlName="No_de_Convenio">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+            
+            <mat-form-field fxFlex fxFlex.xs>
+              <input required type="number" maxlength="10" matInput placeholder="Referencia"
+                formControlName="Referencia">
+            </mat-form-field>
+            <mat-form-field fxFlex fxFlex.xs>
+                <input required type="number" maxlength="10" matInput placeholder="Nombre"
+                  formControlName="Nombre">
+              </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+            <mat-form-field fxFlex fxFlex.xs>
+              <input type="text" maxlength="50" matInput placeholder="Valor" formControlName="Valor">
+            </mat-form-field>
+            <mat-form-field fxFlex fxFlex.xs>
+              <input required type="number" maxlength="10" matInput placeholder="Fecha"
+                formControlName="Fecha">
             </mat-form-field>
           </div>
           <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
             <mat-form-field fxFlex fxFlex.xs>
-              <mat-select required formControlName="expediente" placeholder="Expediente">
-                <mat-option *ngFor="let role of roles" [value]="role._id">
-                  {{role.Name}}
-                </mat-option>
-              </mat-select>
+              <input type="text" maxlength="200" matInput placeholder="Número de cuotas" formControlName="No_de_Cuotas">
             </mat-form-field>
-            <mat-form-field fxFlex fxFlex.xs>
-              <input required type="number" maxlength="10" matInput placeholder="Referencia C"
-                formControlName="referenciaC">
-            </mat-form-field>
-          </div>
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
-            <mat-form-field fxFlex fxFlex.xs>
-              <input type="text" maxlength="50" matInput placeholder="Dirección" formControlName="direccion">
-            </mat-form-field>
-            <mat-form-field fxFlex fxFlex.xs>
-              <input required type="number" maxlength="10" matInput placeholder="Propietario"
-                formControlName="propietario">
-            </mat-form-field>
-          </div>
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
-            <mat-form-field fxFlex fxFlex.xs>
-              <input type="text" maxlength="200" matInput placeholder="Resolución" formControlName="resolucion">
-            </mat-form-field>
-            <mat-form-field fxFlex fxFlex.xs>
-              <input type="text" maxlength="200" matInput placeholder="Valor" formControlName="valor">
-            </mat-form-field>
+            
           </div>
         </mat-card>
         <br>
         <div fxLayoutAlign="start start" fxLayoutGap="10px">
           <button mat-button type="reset" *ngIf="isEdit == false ">Limpiar</button>
           <button mat-button mat-raised-button color="primary" [disabled]="registerUserForm.invalid" (click)="save()">
-            Guardar mandamiento de pago
+            Guardar resolución de pago
           </button>
           <button mat-button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
 
@@ -71,27 +67,27 @@
                       The actual rendered columns are set as a property on the row definition" -->
               
                 <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                  <th mat-header-cell *matHeaderCellDef> No. </th>
-                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                <ng-container matColumnDef="numero">
+                  <th mat-header-cell *matHeaderCellDef> Numero de resolución. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Resolucion_No}} </td>
                 </ng-container>
               
                 <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef> Expediente </th>
-                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <ng-container matColumnDef="convenio">
+                  <th mat-header-cell *matHeaderCellDef> Número de convenio </th>
+                  <td mat-cell *matCellDef="let element"> {{element.No_de_Convenio}} </td>
                 </ng-container>
               
                 <!-- Weight Column -->
-                <ng-container matColumnDef="weight">
-                  <th mat-header-cell *matHeaderCellDef> Referencia catastral </th>
-                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
                 </ng-container>
               
                 <!-- Symbol Column -->
-                <ng-container matColumnDef="symbol">
-                  <th mat-header-cell *matHeaderCellDef> Ciudad </th>
-                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                <ng-container matColumnDef="valor">
+                  <th mat-header-cell *matHeaderCellDef> Valor </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Valor}} </td>
                 </ng-container>
               
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -99,7 +95,9 @@
               </table>
         </div>
           
-            
+        <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 20]" (page)="list($event)">
+          </mat-paginator>
+  
       </mat-tab>
     </mat-tab-group>
 

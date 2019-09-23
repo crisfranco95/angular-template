@@ -1,15 +1,8 @@
 export class ArchivoDeterminadoModel {
     
-    numero: number;
-    ciudad: string;
-    expediente: string;
-    referenciaC: string;
-    direccion: string;
-    notificacion: string;
-    propietario: string;
-    resolucion: string;
-    valor: string;
-
+    No_de_Oficio_EXT: string;
+    Nombre: string;
+    Asunto: string;
+    Firma_del_Responsable: string;
 
 }
-

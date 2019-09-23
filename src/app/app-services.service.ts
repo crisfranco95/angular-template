@@ -3,20 +3,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { MandamientoPagoModel } from './model/MandamientoPagoModel';
 import { MandamientoModel } from './model/MandamientoModel';
-import { SolicitudPagoModel } from './model/SolicitudPagoModel';
+import { SolicitudAbogadoModel } from './model/SolicitudAbogadoModel';
 import { ResolucionVigenteModel } from './model/ResolucionVigenteModel';
 import { ResolucionConvenioPagoModel } from './model/ResolucionConvenioPagoModel';
 import { NotificacionEmbargoModel } from './model/NotificacionEmbargoModel';
 import { NotificacionCorrespondenciaModel } from './model/NotificacionCorrespondenciaModel';
 import { NotificacionMensajeriaModel } from './model/NotificacionMensajeriaModel';
 import { ArchivoDeterminadoModel } from './model/ArchivoDeterminadoModel';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.apiUrl = environment.apiUrl;
+
+  }
   apiUrl: string;
 
   guardarMandamiento(mandamiento: MandamientoModel): Observable<any> {
@@ -43,9 +47,9 @@ export class AppService {
 
   }
 
-  guardarSolicitudPago(solicitudPago: SolicitudPagoModel): Observable<any> {
+  guardarSolicitudAbogado(solicitudAbogado: SolicitudAbogadoModel): Observable<any> {
 
-    const params = JSON.stringify(solicitudPago);
+    const params = JSON.stringify(solicitudAbogado);
     const jwt = localStorage.getItem('JWT');
 
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -126,5 +130,92 @@ export class AppService {
 
   }
 
+  getMandamientos(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/Mandamientos?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+  getMandamientosPago(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/MandamientosPago?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getSolicitudAbogado(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/Solicitud_Abo?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getResolucionVigente(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/Resoluciones_Vigen?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getResolucionConvenioPago(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/Resoluciones_Conve_Pag?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getNotificacionMensajeria(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/notificacion_mensajeria?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getNotificacionEmbargo(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/Notificacion_Emba?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getNotificacionCorrespondencia(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/NotificacionCorrespondencia?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
+
+
+  getArchivoDeterminado(page: number, limit: number): Observable<any> {
+    const jwt = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('x-access-token', jwt);
+    return this.http.get<any>(this.apiUrl + 'api/v1/Respuesta_Archi_Deter?page=' + page + '&limit=' + limit,
+    {
+      headers
+    });
+  }
 
 }

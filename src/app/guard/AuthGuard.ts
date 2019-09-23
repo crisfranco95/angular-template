@@ -12,14 +12,14 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate() {
-    // const token = localStorage.getItem('JWT');
+    const token = localStorage.getItem('JWT');
 
-    // if (token) {
-    //     return true;
-    // } else {
-        // this._router.navigate(['/login']);
+    if (token) {
         return true;
-    // }
+    } else {
+        this._router.navigate(['/login']);
+        return false;
+    }
 
   }
 }

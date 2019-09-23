@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ResolucionVigenteModel } from '../model/ResolucionVigenteModel';
+import { AppService } from '../app-services.service';
 
 export interface PeriodicElement {
   name: string;
@@ -27,24 +29,63 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./resolucion-vigente.component.css']
 })
 export class ResolucionVigenteComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+
+  displayedColumns: string[] = ['numero', 'nombre', 'referencia', 'valor'];
+  dataSource: ResolucionVigenteModel | null;
+
+  public pageIndex = 0;
+  public pageSize  = 5;
+  public length: number;
 
   registerUserForm = new FormGroup({
-    numero: new FormControl(''),
-    ciudad: new FormControl(''),
-    expediente: new FormControl(''),
-    referenciaC: new FormControl(''),
-    direccion: new FormControl(''),
-    notificacion: new FormControl(''),
-    propietario: new FormControl(''),
-    resolucion: new FormControl(''),
-    valor: new FormControl(''),
-
+    Resoluciones_No: new FormControl(''),
+    Nombre: new FormControl(''),
+    Referencia: new FormControl(''),
+    Matricula: new FormControl(''),
+    Direccion: new FormControl(''),
+    Valor: new FormControl(''),
   });
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
 
   ngOnInit() {
+    this.list({pageIndex: this.pageIndex, pageSize: this.pageSize});
+  }
+
+  list(event) {
+    const {pageIndex = 0, pageSize = 5} = event;
+
+    this.appService.getResolucionVigente(pageIndex + 1, pageSize).subscribe(res => {
+      const resolucionVigente = res.message.docs;
+      this.dataSource = resolucionVigente;
+      this.length = res.message.total;
+
+    }, err => {
+      console.log(err);
+      });
+  }
+
+  save() {
+
+    let resolucionVigenteModel: ResolucionVigenteModel  = {
+      Resoluciones_No: this.registerUserForm.value.Resolucion_No,
+      Nombre: this.registerUserForm.value.No_de_Convenio,
+      Referencia: this.registerUserForm.value.Direccion,
+      Matricula: this.registerUserForm.value.Nombre,
+      Direccion: this.registerUserForm.value.Valor,
+      Valor: this.registerUserForm.value.Fecha,
+      
+    };
+
+    this.appService.guardarResolucionVigente(resolucionVigenteModel).subscribe(
+        response => {
+          alert('Resolución vigente ha sido creada exitosamente');
+        },
+        error => {
+          alert(error.message.message);
+
+        }); 
   }
 
 }

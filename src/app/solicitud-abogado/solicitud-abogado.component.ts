@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AppService } from '../app-services.service';
+import { SolicitudAbogadoModel } from '../model/SolicitudAbogadoModel';
 
 export interface PeriodicElement {
   name: string;
@@ -27,24 +29,62 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./solicitud-abogado.component.css']
 })
 export class SolicitudAbogadoComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['numero', 'nombre', 'asunto', 'firma'];
+  dataSource: SolicitudAbogadoModel | null;
+
+  public pageIndex = 0;
+  public pageSize  = 5;
+  public length: number;
 
   registerUserForm = new FormGroup({
-    numero: new FormControl(''),
-    ciudad: new FormControl(''),
-    expediente: new FormControl(''),
-    referenciaC: new FormControl(''),
-    direccion: new FormControl(''),
-    notificacion: new FormControl(''),
-    propietario: new FormControl(''),
-    resolucion: new FormControl(''),
-    valor: new FormControl(''),
+    No_de_Oficio_EXT: new FormControl(''),
+    Nombre: new FormControl(''),
+    Asunto: new FormControl(''),
+    Firma_de_Abogado_Solicitante: new FormControl('')
 
   });
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
 
   ngOnInit() {
+    this.list({pageIndex: this.pageIndex, pageSize: this.pageSize});
+    
   }
 
+  list(event) {
+    const {pageIndex = 0, pageSize = 5} = event;
+
+    this.appService.getSolicitudAbogado(pageIndex + 1, pageSize).subscribe(res => {
+      const solicitudAbogado = res.message.docs;
+      this.dataSource = solicitudAbogado;
+      this.length = res.message.total;
+
+    }, err => {
+
+      console.log(err);
+
+      });
+  }
+
+
+  save() {
+
+    let solicitudAbogadoModel: SolicitudAbogadoModel  = {
+      No_de_Oficio_EXT: this.registerUserForm.value.No_de_Oficio_EXT,
+      Nombre: this.registerUserForm.value.Nombre,
+      Asunto: this.registerUserForm.value.Asunto,
+      Firma_de_Abogado_Solicitante: this.registerUserForm.value.Firma_de_Abogado_Solicitante,
+
+    };
+
+    this.appService.guardarSolicitudAbogado(solicitudAbogadoModel).subscribe(
+        response => {
+          alert('Resolución de convenio de pago ha sido creada exitosamente');
+        },
+        error => {
+          alert(error.message.message);
+
+        }); 
+  }
 }

@@ -1,25 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: '123456', weight: 1.0079, symbol: 'Cartagena'},
-  {position: 2, name: '123456', weight: 4.0026, symbol: 'Cartagena'},
-  {position: 3, name: '123456', weight: 6.941, symbol: 'Barranquilla'},
-  {position: 4, name: '123456', weight: 9.0122, symbol: 'Santa Marta'},
-  {position: 5, name: '123456', weight: 10.811, symbol: 'Medellín'},
-  {position: 6, name: '123456', weight: 12.0107, symbol: 'Cali'},
-  {position: 7, name: '123456', weight: 14.0067, symbol: 'Cúcuta'},
-  {position: 8, name: '123456', weight: 15.9994, symbol: 'Bucaramanga'},
-  {position: 9, name: '123456', weight: 18.9984, symbol: 'Manizales'},
-  {position: 10, name: '123456', weight: 20.1797, symbol: 'Cartagena'},
-];
+import { AppService } from '../app-services.service';
+import { ArchivoDeterminadoModel } from '../model/ArchivoDeterminadoModel';
 
 @Component({
   selector: 'app-archivo-determinado',
@@ -27,24 +9,57 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./archivo-determinado.component.css']
 })
 export class ArchivoDeterminadoComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['numero', 'nombre', 'asunto', 'firma'];
+  dataSource: ArchivoDeterminadoModel | null;
+
+  public length: number;
+  public pageIndex = 0;
+  public pageSize  = 5;
 
   registerUserForm = new FormGroup({
-    numero: new FormControl(''),
-    ciudad: new FormControl(''),
-    expediente: new FormControl(''),
-    referenciaC: new FormControl(''),
-    direccion: new FormControl(''),
-    notificacion: new FormControl(''),
-    propietario: new FormControl(''),
-    resolucion: new FormControl(''),
-    valor: new FormControl(''),
-
+    No_de_Oficio_EXT: new FormControl(''),
+    Nombre: new FormControl(''),
+    Asunto: new FormControl(''),
+    Firma_del_Responsable: new FormControl(''),
+    
   });
-  constructor() { }
+  constructor(
+    private appService: AppService
+  ) { }
 
   ngOnInit() {
+    this.list({pageIndex: this.pageIndex, pageSize: this.pageSize});
+  }
+
+  list(event) {
+    const {pageIndex = 0, pageSize = 5} = event;
+
+    this.appService.getArchivoDeterminado(pageIndex + 1, pageSize ).subscribe(res => {
+      const archivos = res.message.docs;
+      this.dataSource = archivos;
+      this.length = res.message.total;
+    }, err => {
+      console.log(err);
+      });
+  }
+
+  save() {
+
+    let archivoDeterminadoModel: ArchivoDeterminadoModel  = {
+      No_de_Oficio_EXT: this.registerUserForm.value.No_de_Oficio_EXT,
+      Nombre: this.registerUserForm.value.Nombre,
+      Asunto: this.registerUserForm.value.Asunto,
+      Firma_del_Responsable: this.registerUserForm.value.Firma_del_Responsable,
+    };
+
+    this.appService.guardarArchivoDeterminado(archivoDeterminadoModel).subscribe(
+        response => {
+          alert('El archivo determinado ha sido creado exitosamente');
+        },
+        error => {
+          alert(error.message.message);
+
+        }); 
   }
 
 }

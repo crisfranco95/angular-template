@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
       case 'Admin':
         this.navModel = [
           new NavModel('/home/dashboard', 'Inicio', 'home'),
+          new NavModel('/home/archivo-determinado', 'Archivo determinado', 'account_circle'),
           new NavModel('/home/mandamientos', 'Mandamientos', 'account_circle'),
           new NavModel('/home/mandamientos-pago', 'Mandamientos de pago', 'account_circle'),
           new NavModel('/home/notificacion-correspondencia', 'Notificación de correspondencia', 'account_circle'),
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
           new NavModel('/home/notificacion-mensajeria', 'Notificación de mensajería', 'account_circle'),
           new NavModel('/home/resolucion-vigente', 'Resolución vigente', 'account_circle'),
           new NavModel('/home/resolucion-convenio-pago', 'Resolución de convenio de pago', 'account_circle'),
+          new NavModel('/home/solicitud-abogado', 'Solicitud abogado', 'account_circle'),
           new NavModel('/home/about', 'Acerca de', 'help'),
         ];
         break;
@@ -53,8 +55,8 @@ export class HomeComponent implements OnInit {
   }
 
   logout(): void {
-    // localStorage.removeItem('JWT');
-    this.router.navigate(['login']);
+      localStorage.removeItem('JWT');
+      this.router.navigate(['login']);
     }
 
     navigateTo(link) {
