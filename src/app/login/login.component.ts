@@ -38,6 +38,6 @@ export class LoginComponent implements OnInit {
     //    alert('El usuario no se ha logueado correctamente');
 
   //    });
-  //}
+  }
 
 }
