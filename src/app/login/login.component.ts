@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
   
 
   save(): void {
-    this.authService.authenticate(this.user).subscribe(res => {
-      this.router.navigate(['home/dashboard']);
-      }, err => {
-        alert('El usuario no se ha logueado correctamente');
+    //this.authService.authenticate(this.user).subscribe(res => {
+    //  this.router.navigate(['home/dashboard']);
+    //  }, err => {
+    //    alert('El usuario no se ha logueado correctamente');
 
-      });
-  }
+  //    });
+  //}
 
 }
