@@ -25,7 +25,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'ls'
-  
+    
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(Build.BinariesDirectory)'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'angular-template/dist/template'
