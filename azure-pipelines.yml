@@ -22,11 +22,10 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
-  - script: |
-    ls
-    
-  displayName: 'List files'
-
+- task: CmdLine@2
+  inputs:
+    script: 'ls'
+  
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'angular-template/dist/angular-template'
