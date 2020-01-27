@@ -30,6 +30,10 @@ steps:
   inputs:
     script: 'echo $(Build.BinariesDirectory)'
 
+- task: CmdLine@2
+  inputs:
+    script: 'pwd'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '/angular-template/dist/template'
