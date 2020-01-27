@@ -29,7 +29,6 @@ steps:
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'angular-template/dist/template'
-    includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/dest.zip'
     replaceExistingArchive: true
