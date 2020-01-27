@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { LoginUserModel } from './model/LoginUserModel';
 import { AuthModel } from './model/AuthModel';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { HttpClient, } from '@angular/common/http';
 import { environment } from './../environments/environment';
 
 @Injectable({
