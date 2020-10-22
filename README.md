@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/cristianjunior22/angular-template/_apis/build/status/crisfranco95.angular-template?branchName=master)](https://dev.azure.com/cristianjunior22/angular-template/_build/latest?definitionId=2&branchName=master)
+
 # Template
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
