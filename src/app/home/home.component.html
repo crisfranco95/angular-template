@@ -1,32 +1,30 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a *ngFor="let item of navModel" mat-list-item (click)='navigateTo(item.link)'>
         <mat-icon>{{item.icon}}</mat-icon>
         {{item.name}}
       </a>
-      <a mat-list-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Cerrar sesión</a> 
-
+      <a mat-list-item (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>Cerrar sesión
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>template</span>
     </mat-toolbar>
-    <div >
-      <router-outlet></router-outlet>
+    <div>
+
+      <router-outlet class="grid-container"></router-outlet>
+
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
