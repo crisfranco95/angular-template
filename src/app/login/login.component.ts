@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
     //   this.showLoadingBar = false;
 
-      this.router.navigate(['home/dashboard']);
+      this.router.navigate(['dashboard']);
 
 
       // }, err => {
