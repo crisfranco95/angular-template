@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MaterialComponentsDefinitionModule} from '../app/material-components-definition/material-components-definition.module';
+import { MaterialComponentsDefinitionModule } from '../app/material-components-definition/material-components-definition.module';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +22,12 @@ import { LoginGuard } from './guard/LoginGuard';
 import { AboutComponent } from './about/about.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MasterComponent } from './master/master.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -37,6 +43,14 @@ import { MasterComponent } from './master/master.component';
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
+    TranslateModule.forRoot({
+      defaultLanguage: 'es',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -49,7 +63,8 @@ import { MasterComponent } from './master/master.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+
   ],
   providers: [
     AuthGuard,
