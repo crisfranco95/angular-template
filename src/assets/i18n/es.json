@@ -1,5 +1,8 @@
 {
-    "HELLO": "Hola",
+    "USERS": "Usuarios",
     "HOME" : "Inicio",
-    "ABOUT": "Acerca de"
-}
+    "ABOUT": "Acerca de",
+    "SETTINGS": "Ajustes",
+    "SETTINGS_IN_YOUR_APPLICATION": "Ajustes en tu aplicación",
+    "LOG_OUT": "Cerrar sesión"
+} 

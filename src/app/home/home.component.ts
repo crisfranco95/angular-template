@@ -28,15 +28,15 @@ export class HomeComponent implements OnInit {
     switch (user) {
       case 'Admin':
         this.navModel = [
-          new NavModel('/dashboard', 'Home', 'home'),
-          new NavModel('/user', 'Users', 'account_circle'),
-          new NavModel('/about', 'About', 'help'),
-          new NavModel('/settings', 'Settings', 'settings'),
+          new NavModel('/dashboard', 'HOME', 'home'),
+          new NavModel('/user', 'USERS', 'account_circle'),
+          new NavModel('/about', 'ABOUT', 'help'),
+          new NavModel('/settings', 'SETTINGS', 'settings'),
         ];
         break;
       default:
         this.navModel = [
-          new NavModel('/dashboard', 'Home', 'home'),
+          new NavModel('/dashboard', 'HOME', 'home'),
         ];
         break;
 

@@ -6,10 +6,10 @@
     <mat-nav-list>
       <a *ngFor="let item of navModel" mat-list-item (click)='navigateTo(item.link)'>
         <mat-icon>{{item.icon}}</mat-icon>
-        {{item.name}}
+        {{item.name | translate}}
       </a>
       <a mat-list-item (click)="logout()">
-        <mat-icon>power_settings_new</mat-icon>Cerrar sesión
+        <mat-icon>power_settings_new</mat-icon> {{ 'LOG_OUT' | translate }}
       </a>
     </mat-nav-list>
   </mat-sidenav>

@@ -1,5 +1,8 @@
 {
-    "HELLO": "hello cjajas{{value}}",
+    "USERS": "Users",
     "HOME" : "Home",
-    "ABOUT": "About"
+    "ABOUT": "About",
+    "SETTINGS": "Settings",
+    "SETTINGS_IN_YOUR_APPLICATION": "Settings in your application",
+    "LOG_OUT": "Log out"
 }
