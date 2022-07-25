@@ -46,7 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
     MasterComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
     TranslateModule.forRoot({
       defaultLanguage: 'es',
       loader: {
