@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { LoginUserModel } from '../model/LoginUserModel';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
 
   public showLoadingBar: boolean;
 
-  loginForm = new FormGroup({
-    usernameField: new FormControl(''),
-    passwordField: new FormControl('')
+  loginForm = new UntypedFormGroup({
+    usernameField: new UntypedFormControl(''),
+    passwordField: new UntypedFormControl('')
   });
 
   constructor(private authService: AuthService,
